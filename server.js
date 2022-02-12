@@ -29,7 +29,7 @@ const handler = async (request) => {
 
 
     let urlPaths = url.pathname.split('/')
-     console.log('paths', urlPaths)
+    console.log('api availibile', API)
 
     if(request.method == 'GET'){
         response = new Response(JSON.stringify(apiHandler(API,urlPaths)), {
