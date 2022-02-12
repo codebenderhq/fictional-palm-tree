@@ -18,6 +18,8 @@ const apiHandler =(API, urlPaths,data) => {
 }
 
 const handler = async (request) => {
+
+    //need to add support for being able to handle the base path 
     let response = new Response(JSON.stringify({status:'error'}), {
         headers:{
             "content-type": "application/json"
