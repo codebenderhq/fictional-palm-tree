@@ -12,6 +12,7 @@ const post = (req: JSON) => {
 
     return req
 }
+
 export default {index, get,post};
 
 

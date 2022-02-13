@@ -25,13 +25,14 @@ const handler = async (request) => {
             "content-type": "application/json"
         },
         status: 404 });
-    let body = "Your user-agent is:\n\n";
-    console.log(body += request.headers.get("user-agent") || "Unknown");
+
+    // for adding support for authorization
+    // console.log('headers',request.headers.get('authorization'));
     let url = new URL(request.url)
 
 
     let urlPaths = url.pathname.split('/')
-    console.log('api availibile', API)
+
 
     if(request.method == 'GET'){
         response = new Response(JSON.stringify(apiHandler(API,urlPaths)), {
