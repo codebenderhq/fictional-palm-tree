@@ -8,9 +8,9 @@ const get = () => {
     return {hello:'test'}
 }
 
-const post = (req: JSON) => {
+const post = (data: JSON) => {
 
-    return req
+    return data
 }
 
 export default {index, get,post};

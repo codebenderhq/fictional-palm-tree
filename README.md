@@ -16,10 +16,11 @@ functions in the API are the apis that are exposed to the client.
 eg: `POST: user/login` =
 `./api/user/`
 ```ts
-const login = (req: JSON) => {
+const login = (data: JSON) => {
         return {name:'joe'}
     }
 ```
+`data:JSON`: POST payload, currently only supports JSON
 
 eg: `GET: user` =
 `./api/user/`
