@@ -37,10 +37,11 @@ const index = () => {
 
 ### Setup
 ```
-git clone https://github.com/codebenderhq/fictional-palm-tree.git
+git clone https://github.com/codebenderhq/fictional-palm-tree.git ./server
 ```
 ### how to run
 ```
+cd ./server
 deno run --allow-net server.js
 ```
 
