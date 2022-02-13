@@ -51,6 +51,7 @@ deno run --allow-net server.js
 - [x] GET Support
 - [x] POST Support
 - [ ] Support for query parameters
+- [ ] Support for authorization header
 - [ ] Support for file uploads
 - [ ] Support for sockets
 
