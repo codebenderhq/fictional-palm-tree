@@ -18,37 +18,44 @@ const apiHandler =(API, urlPaths,data) => {
 }
 
 const handler = async (request) => {
+    let response;
 
-    //need to add support for being able to handle the base path 
-    let response = new Response(JSON.stringify({status:'error'}), {
-        headers:{
-            "content-type": "application/json"
-        },
-        status: 404 });
-
-    // for adding support for authorization
-    // console.log('headers',request.headers.get('authorization'));
-    let url = new URL(request.url)
+    try{
+        //need to add support for being able to handle the base path
 
 
-    let urlPaths = url.pathname.split('/')
+        // for adding support for authorization
+        // console.log('headers',request.headers.get('authorization'));
+        let url = new URL(request.url)
 
 
-    if(request.method == 'GET'){
-        response = new Response(JSON.stringify(apiHandler(API,urlPaths)), {
+        let urlPaths = url.pathname.split('/')
+
+
+        if(request.method == 'GET'){
+            response = new Response(JSON.stringify(apiHandler(API,urlPaths)), {
+                headers:{
+                    "content-type": "application/json"
+                },
+                status: 200 });
+
+        }else if(request.method == 'POST'){
+            const data = await request.json()
+
+            response = new Response(JSON.stringify((apiHandler(API,urlPaths,data))), {
+                headers:{
+                    "content-type": "application/json"
+                },
+                status: 200 });
+        }
+
+    }catch(err){
+        // look into support for logging service or build own
+        return new Response(JSON.stringify({status:'error', msg:err.message}), {
             headers:{
                 "content-type": "application/json"
             },
-            status: 200 });
-
-    }else if(request.method == 'POST'){
-        const data = await request.json()
-
-        response = new Response(JSON.stringify((apiHandler(API,urlPaths,data))), {
-            headers:{
-                "content-type": "application/json"
-            },
-            status: 200 });
+            status: 500 });;
     }
 
     return response;
