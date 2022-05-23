@@ -33,33 +33,29 @@ const handler = async (request) => {
 
 
         if(request.method == 'GET'){
-            response = new Response(JSON.stringify(apiHandler(API,urlPaths)), {
-                headers:{
-                    "content-type": "application/json"
-                },
-                status: 200 });
+
+            response = Response.json(await apiHandler(API,urlPaths));
+            
+            // response = new Response(JSON.stringify()), {
+            //     headers:{
+            //         "content-type": "application/json"
+            //     },
+            //     status: 200 });
 
         }else if(request.method == 'POST'){
             const data = await request.json()
-
-            response = new Response(JSON.stringify((apiHandler(API,urlPaths,data))), {
-                headers:{
-                    "content-type": "application/json"
-                },
-                status: 200 });
+            response = Response.json(apiHandler(API,urlPaths,data))
         }
 
     }catch(err){
         // look into support for logging service or build own
-        return new Response(JSON.stringify({status:'error', msg:err.message}), {
-            headers:{
-                "content-type": "application/json"
-            },
-            status: 500 });;
+        return Response.json({status:'error', msg:err.message},{
+            status: 500 
+        });
     }
 
     return response;
 };
 
-console.log(`HTTP webserver running. Access it at: http://localhost:8080/`);
+console.log(`HTTP webserver running. Access it at: http://localhost:${port}/`);
 await serve(handler, { port });
