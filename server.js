@@ -34,7 +34,7 @@ const handler = async (request) => {
 
         if(request.method == 'GET'){
 
-            response = Response.json(await apiHandler(API,urlPaths));
+            response = Response.json(apiHandler(API,urlPaths));
             
             // response = new Response(JSON.stringify()), {
             //     headers:{
